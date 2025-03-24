@@ -1,0 +1,19 @@
+$c:red;
+$fz:30px;
+
+@mixin border{
+    border: 1px solid #e61e6b;
+    border-radius: 1px;
+}
+
+.box{
+    color: $c;
+    font-size: $fz;
+    font-weight: bold;
+    display: flex;
+    transition: all 1s ease;
+}
+.cell {
+    text-align: center;
+    @include border()
+}
