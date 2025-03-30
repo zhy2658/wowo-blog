@@ -1,7 +1,7 @@
 {
   "name": "github-page",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.ts",
   "scripts": {
     "dev": "npx webpack serve --config webpack.config.js",
     "build-dev": "webpack --mode development",
@@ -16,7 +16,11 @@
     "@babel/core": "^7.26.10",
     "@babel/plugin-transform-runtime": "^7.26.10",
     "@babel/preset-env": "^7.26.9",
-    "@babel/preset-typescript": "^7.26.0",
+    "@babel/preset-typescript": "^7.27.0",
+    "@types/lodash": "^4.17.16",
+    "@types/node": "^22.13.14",
+    "@vue/babel-plugin-jsx": "^1.4.0",
+    "@vue/runtime-core": "^3.5.13",
     "autoprefixer": "^10.4.21",
     "babel-loader": "^10.0.0",
     "core-js": "^3.41.0",
@@ -30,13 +34,20 @@
     "sass": "^1.86.0",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
+    "vue": "^3.5.13",
+    "vue-loader": "^17.3.1",
+    "vue-router": "^4.5.0",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
+    "@vue/tsconfig": "^0.7.0",
     "bulma": "^1.0.3",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^2.9.2",
+    "typescript": "~5.8.0",
+    "vue-tsc": "^2.2.8",
     "webpack-dev-server": "^5.2.0"
   },
   "browserslist": [

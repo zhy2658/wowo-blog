@@ -3,17 +3,48 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const devMode = process.env.NODE_ENV !== 'production';
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/main.ts',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.vue', '.json'], // 支持的文件扩展名
+        alias: {
+            '@': path.resolve(__dirname, 'src') // 路径别名（与 tsconfig 同步）
+        }
     },
     mode: 'development',
     //配置loader
     module: {
         rules: [
+            {
+                test: /\.vue$/,
+                loader: "vue-loader"
+            },
+            // 处理 TypeScript 文件
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+                options: {
+                    appendTsSuffixTo: [/\.vue$/] // 为 .vue 文件添加 .ts 后缀解析
+                }
+            },
+            {
+                test: /\.html$/i,
+                use: [
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            esModule: false,
+                        },
+                    },
+                ],
+            },
             {
                 test: /\.css$/,
                 //use里面执⾏顺序是从右往左的顺序，先模块化再引入
@@ -72,18 +103,8 @@ module.exports = {
                 generator: {
                     filename: 'font/[name].[contenthash:4][ext]',
                 },
-            },
-            {
-                test: /\.html$/i,
-                use: [
-                    {
-                        loader: 'html-loader',
-                        options: {
-                            esModule: false,
-                        },
-                    },
-                ],
             }
+
         ]
     },
     devtool: 'inline-source-map', // 启用 source map 以便调试
@@ -104,6 +125,7 @@ module.exports = {
             filename: 'index.html', //打包的 HTML 文件名字
             favicon: path.resolve(__dirname, './favicon.ico'), //网页图标
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new VueLoaderPlugin()
     ]
 };

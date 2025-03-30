@@ -15,7 +15,7 @@ $fz:30px;
 }
 .cell {
     text-align: center;
-    @include border()
+    // @include border()
 }
 .test-conent{
     height: 600px;
