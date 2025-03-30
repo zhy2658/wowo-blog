@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "noImplicitAny": false, 
+    "allowJs": true,
     "target": "ESNext",         // 目标 JS 版本
     "module": "ESNext",         // 模块系统
     "strict": true,            // 开启严格类型检查

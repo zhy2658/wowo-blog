@@ -1,7 +1,7 @@
 <template>
+  <CustomHeader />
   <div class="container is-fluid">
     <div class="notification">
-      <CustomHeader />
       <RouterView />
     </div>
   </div>

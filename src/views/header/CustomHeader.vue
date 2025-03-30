@@ -1,6 +1,8 @@
 <template>
-  <div class="header">
-    <nav class="breadcrumb" aria-label="breadcrumbs">
+  <NavBar :menu="menu" />
+  <!--  <div class="header">
+   
+   <nav class="breadcrumb" aria-label="breadcrumbs">
       <ul>
         <li>
           <a class="navbar-item">
@@ -14,12 +16,25 @@
         </li>
       </ul>
     </nav>
-  </div>
+  </div> -->
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+const menu = ref([
+  {
+    path: '/',
+    label: '主页'
+  },
+  {
+    path: '/tools/convertRGB',
+    label: '十六进制转RGB'
+  }
+])
+</script>
 
 <style scoped>
+@import 'wowo-nav/dist/wowo-nav.css';
 .header {
   margin-bottom: 20px;
 }

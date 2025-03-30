@@ -48,7 +48,8 @@
     "mini-css-extract-plugin": "^2.9.2",
     "typescript": "~5.8.0",
     "vue-tsc": "^2.2.8",
-    "webpack-dev-server": "^5.2.0"
+    "webpack-dev-server": "^5.2.0",
+    "wowo-nav": "^1.0.0"
   },
   "browserslist": [
     ">1%",
