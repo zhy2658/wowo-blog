@@ -15,6 +15,10 @@ const routes = [
       {
         path: 'convertRGB',
         component: () => import('@/views/tools/ConvertRGBView.vue')
+      },
+      {
+        path: 'compressPhoto',
+        component: () => import('@/views/tools/CompressPhotoView.vue')
       }
     ]
   }

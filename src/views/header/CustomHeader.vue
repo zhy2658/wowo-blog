@@ -29,6 +29,10 @@ const menu = ref([
   {
     path: '/tools/convertRGB',
     label: '十六进制转RGB'
+  },
+  {
+    path: '/tools/compressPhoto',
+    label: '压缩图片'
   }
 ])
 </script>
