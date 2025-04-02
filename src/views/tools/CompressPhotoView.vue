@@ -1,10 +1,20 @@
 <template>
   <div>
     <h1>图片压缩</h1>
-    <p>提示：此压缩模块是基于Google Squoosh的开源插件，整个过程由前端完成，无需后端参与。我们保证网站不会将任何信息发送到服务器。</p>
+    <p>提示：此压缩模块整个过程由前端完成，无需后端参与。高宽推荐选择其中一个，等比例缩放图片，不设置高宽尺寸则是原图大小。</p>
     <div style="margin: 10px 0">
-      <label>图片质量：</label>
-      <input class="input" type="number" placeholder="Text input" v-model="quality" style="max-width: 400px" />
+      <div>
+        <label>高度：</label>
+        <input class="input" type="" placeholder="高度" v-model="height" style="max-width: 400px" />
+      </div>
+      <div>
+        <label>宽度：</label>
+        <input class="input" type="" placeholder="宽度" v-model="width" style="max-width: 400px" />
+      </div>
+      <div>
+        <label>图片质量：</label>
+        <input class="input" type="number" placeholder="Text input" v-model="quality" style="max-width: 400px" />
+      </div>
       <button class="button is-primary" @click="excute">压缩</button>
     </div>
     <div>
@@ -35,40 +45,40 @@
 <script setup lang="ts">
 import { ref, computed, reactive } from 'vue'
 import _ from 'lodash'
-import { compress } from 'squoosh-compress'
-const origiImg = reactive({ name: '请选择图片文件', size: 0, type: '' })
-const compressedImg = reactive({ name: '11', size: 0, type: '', link: '' })
+import Compressor from 'compressorjs';
+
+
+const origiImg = reactive({ name: '请选择图片文件', size: 0, type: '',width:0,height:0 })
+const compressedImg = reactive({ name: '11', size: 0, type: '', link: '',width:0,height:0 })
 const quality = ref(0.7)
-let file = {}
+const height = ref(0)
+const width = ref(0)
+let imgFile:File = new File([], '');
 
 const changeImg = async (e: any) => {
-  file = e.target.files[0]
-  Object.assign(origiImg, file)
-  origiImg['name'] = file['name']
-  origiImg['size'] = file['size']
-  origiImg['type'] = file['type']
+  imgFile = e.target.files[0]
+  Object.assign(origiImg, imgFile)
+  origiImg['name'] = imgFile!.name
+  origiImg['size'] = imgFile!.size
+  origiImg['type'] = imgFile!.type
 }
 
 const excute = async () => {
-  if (file == null) return
-  const data2 = await compress(
-    file,
-    {
-      type: 'browser-jpeg',
-      options: {
-        quality: quality.value
-      }
+  let params = {
+    quality: quality.value,
+    success(res) {
+      compressedImg['name'] = res['name']
+      compressedImg['size'] = res['size']
+      compressedImg['type'] = res['type']
+      compressedImg['link'] = URL.createObjectURL(res)
+    }, 
+    error(err) {
+      console.log(err.message);
     },
-    file['name']
-  )
-  compressedImg['name'] = data2['name']
-  compressedImg['size'] = data2['size']
-  compressedImg['type'] = data2['type']
-  Object.assign(compressedImg, data2)
-
-  // 生成对象URL
-  const objectURL = URL.createObjectURL(data2)
-  compressedImg['link'] = objectURL
+  }
+  height.value && (params['height']=height.value)
+  width.value && (params['width']=width.value)
+  new Compressor(imgFile , params );
 }
 </script>
 

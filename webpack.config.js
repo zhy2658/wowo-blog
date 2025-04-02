@@ -2,7 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-const devMode = process.env.NODE_ENV !== 'production';
+// const devMode = process.env.NODE_ENV !== 'production';
+const devMode = false
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
@@ -119,6 +120,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             // 长期缓存:使用 filename: "[contenthash].css" 启动长期缓存
             filename: devMode ? 'css/[name].css' : 'css/[name].[contenthash].css',
+            chunkFilename: 'css/[name].[contenthash:8].chunk.css'
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './index.html'), //模板
