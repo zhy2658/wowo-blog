@@ -16,6 +16,10 @@ const menu = ref([
   {
     path: '/image/compress',
     label: '图片压缩'
+  },
+  {
+    path: '/json',
+    label: 'json格式化'
   }
 ])
 </script>

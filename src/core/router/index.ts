@@ -26,6 +26,16 @@ const routes = [
             component: () => import('@/features/color-tools/components/hex.vue')
           }
         ]
+      },
+      {
+        path: 'json',
+        component: () => import('@/features/json-tools/index.vue'), 
+        children: [
+          // {
+          //   path: 'hex',
+          //   component: () => import('@/features/color-tools/components/hex.vue')
+          // }
+        ]
       }
     ]
   },
