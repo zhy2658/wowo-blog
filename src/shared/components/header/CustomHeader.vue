@@ -1,5 +1,5 @@
 <template>
-  <NavBar :menu="menu" />
+  <NavBar :menu="menu" :title="title" />
 </template>
 
 <script setup lang="ts">
@@ -18,10 +18,15 @@ const menu = ref([
     label: '图片压缩'
   },
   {
+    path: '/image/base64',
+    label: '图片转Base64'
+  },
+  {
     path: '/json',
     label: 'json格式化'
   }
 ])
+const title = ref("zhy工具箱")
 </script>
 
 <style scoped>

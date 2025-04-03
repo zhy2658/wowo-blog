@@ -1,10 +1,11 @@
 <template>
     <JsonEditorVue
+      class="jse-theme-dark"
       v-model="value"
       model="code"
       lang="zh"
       style="height: 700px;"
-      v-bind="{/* local props & attrs */}"
+     :options="editorOptions"
     />
   </template>
 
@@ -12,6 +13,15 @@
 import {ref} from "vue"
 import JsonEditorVue from 'json-editor-vue'
 
+
 const value = ref()
+
+const editorOptions = {
+}
+
 </script>
+<style>
+@import 'vanilla-jsoneditor/themes/jse-theme-dark.css'
+
+</style>
 

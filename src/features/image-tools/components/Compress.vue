@@ -38,7 +38,7 @@ import _ from 'lodash'
 import Compressor from 'compressorjs';
 
 const props = defineProps<{
-	imgFile: Object
+	imgFile: File
 }>()
 
 const compressedImg = reactive({ name: '', size: 0, type: '', link: '', width: 0, height: 0 })

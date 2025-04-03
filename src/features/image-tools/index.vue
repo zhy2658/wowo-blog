@@ -19,7 +19,6 @@
 <script setup lang="ts">
 import { ref,reactive } from 'vue'
 
-const origiImg = reactive({ name: '请选择图片文件', size: 0, type: '',width:0,height:0 })
 const imgFile = ref(new File([], ''));
 
 const changeImg = async (e: any) => {

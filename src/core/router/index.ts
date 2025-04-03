@@ -15,6 +15,10 @@ const routes = [
             path: 'compress',
             component: () => import('@/features/image-tools/components/Compress.vue')
           },
+          {
+            path: 'base64',
+            component: () => import('@/features/image-tools/components/Base64.vue')
+          },
         ]
       },
       {
